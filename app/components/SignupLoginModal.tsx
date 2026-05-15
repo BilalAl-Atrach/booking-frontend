@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import api from "../lib/api";
@@ -10,7 +11,12 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   async function handleSubmit() {
     try {
@@ -71,7 +77,9 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
     }
   }
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/55 px-4 py-4 backdrop-blur-sm sm:py-6">
       <div className="w-full max-w-md overflow-y-auto rounded-2xl bg-white text-slate-900 shadow-2xl ring-1 ring-slate-200 max-h-[calc(100dvh-2rem)] sm:max-h-[90vh]">
         <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
@@ -226,6 +234,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
