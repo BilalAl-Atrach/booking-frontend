@@ -72,85 +72,159 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center px-4 py-6">
-      {/* ✅ Center modal independently of navbar */}
-      <div
-        className="w-full max-w-md bg-white rounded-lg shadow-xl p-5 sm:p-6 text-black max-h-[90vh] overflow-auto"
-      >
-        <h2 className="text-xl font-bold mb-4 text-center">
-          {isSignup ? "Signup" : "Login"}
-        </h2>
+    <div className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/55 px-4 py-4 backdrop-blur-sm sm:py-6">
+      <div className="w-full max-w-md overflow-y-auto rounded-2xl bg-white text-slate-900 shadow-2xl ring-1 ring-slate-200 max-h-[calc(100dvh-2rem)] sm:max-h-[90vh]">
+        <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-blue-600">
+                {isSignup ? "Create account" : "Welcome back"}
+              </p>
+              <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-950">
+                {isSignup ? "Sign up to BookAI" : "Login to BookAI"}
+              </h2>
+              <p className="mt-1 text-sm text-slate-500">
+                {isSignup
+                  ? "Fill your details to reserve appointments."
+                  : "Use your username and password to continue."}
+              </p>
+            </div>
 
-        {isSignup && (
-          <>
-            <input
-              id="name"
-              name="name"
-              autoComplete="name"
-              required
-              className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Full Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              id="phone_number"
-              name="phone_number"
-              autoComplete="tel"
-              required
-              className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Phone Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-          </>
-        )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
+              aria-label="Close"
+            >
+              x
+            </button>
+          </div>
+        </div>
 
-        <input
-          id="username"
-          name="username"
-          autoComplete="username"
-          required
-          className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <div className="px-5 py-5 sm:px-6">
+          <div className="mb-5 grid grid-cols-2 rounded-xl bg-slate-100 p-1">
+            <button
+              type="button"
+              onClick={() => setIsSignup(true)}
+              className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                isSignup
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+            >
+              Sign Up
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsSignup(false)}
+              className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
+                !isSignup
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+            >
+              Login
+            </button>
+          </div>
 
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete={isSignup ? "new-password" : "current-password"}
-          required
-          className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          {isSignup && (
+            <>
+              <label
+                htmlFor="name"
+                className="mb-1 block text-sm font-medium text-slate-700"
+              >
+                Full name
+              </label>
+              <input
+                id="name"
+                name="name"
+                autoComplete="name"
+                required
+                className="mb-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                placeholder="Full Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
 
-        <button
-          onClick={handleSubmit}
-          className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-medium transition"
-        >
-          {isSignup ? "Signup" : "Login"}
-        </button>
+              <label
+                htmlFor="phone_number"
+                className="mb-1 block text-sm font-medium text-slate-700"
+              >
+                Phone number
+              </label>
+              <input
+                id="phone_number"
+                name="phone_number"
+                autoComplete="tel"
+                required
+                className="mb-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                placeholder="Phone Number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </>
+          )}
 
-        <p
-          className="mt-4 text-sm text-blue-600 cursor-pointer hover:underline text-center"
-          onClick={() => setIsSignup(!isSignup)}
-        >
-          {isSignup
-            ? "Already have an account? Login"
-            : "Need an account? Signup"}
-        </p>
+          <label
+            htmlFor="username"
+            className="mb-1 block text-sm font-medium text-slate-700"
+          >
+            Username
+          </label>
+          <input
+            id="username"
+            name="username"
+            autoComplete="username"
+            required
+            className="mb-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-        <button
-          onClick={onClose}
-          className="mt-4 w-full py-2 bg-gray-300 text-black rounded hover:bg-gray-400 transition"
-        >
-          Close
-        </button>
+          <label
+            htmlFor="password"
+            className="mb-1 block text-sm font-medium text-slate-700"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete={isSignup ? "new-password" : "current-password"}
+            required
+            className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button
+            onClick={handleSubmit}
+            className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-3 font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:from-blue-700 hover:to-cyan-600 active:scale-[0.99]"
+          >
+            {isSignup ? "Create Account" : "Login"}
+          </button>
+
+          <p className="mt-5 text-center text-sm text-slate-600">
+            {isSignup ? "Already have an account?" : "Need an account?"}{" "}
+            <button
+              type="button"
+              onClick={() => setIsSignup(!isSignup)}
+              className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+            >
+              {isSignup ? "Login" : "Sign up"}
+            </button>
+          </p>
+
+          <button
+            onClick={onClose}
+            className="mt-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
