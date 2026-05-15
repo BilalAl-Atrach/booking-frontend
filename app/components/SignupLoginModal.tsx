@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import api from "../lib/api";
 
 export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
@@ -14,9 +15,29 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
   async function handleSubmit() {
     try {
       const endpoint = isSignup ? "signup" : "login";
+      const trimmedUsername = username.trim();
+      const trimmedPassword = password.trim();
+      const trimmedName = name.trim();
+      const trimmedPhoneNumber = phoneNumber.trim();
+
+      if (!trimmedUsername || !trimmedPassword) {
+        alert("Please fill in username and password.");
+        return;
+      }
+
+      if (isSignup && (!trimmedName || !trimmedPhoneNumber)) {
+        alert("Please fill in full name and phone number.");
+        return;
+      }
+
       const payload = isSignup
-        ? { username, password, name, phone_number: phoneNumber }
-        : { username, password };
+        ? {
+            username: trimmedUsername,
+            password: trimmedPassword,
+            name: trimmedName,
+            phone_number: trimmedPhoneNumber,
+          }
+        : { username: trimmedUsername, password: trimmedPassword };
 
       const res = await api.post(`/${endpoint}`, payload);
       const data = res.data;
@@ -44,7 +65,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
     } catch (err) {
       console.error("Error:", err);
       alert(
-        (err as any).response?.data?.detail ||
+        (axios.isAxiosError(err) && err.response?.data?.detail) ||
           "Server not responding. Is FastAPI running?",
       );
     }
@@ -68,6 +89,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
               id="name"
               name="name"
               autoComplete="name"
+              required
               className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Full Name"
               value={name}
@@ -77,6 +99,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
               id="phone_number"
               name="phone_number"
               autoComplete="tel"
+              required
               className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Phone Number"
               value={phoneNumber}
@@ -89,6 +112,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
           id="username"
           name="username"
           autoComplete="username"
+          required
           className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Username"
           value={username}
@@ -100,6 +124,7 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
           name="password"
           type="password"
           autoComplete={isSignup ? "new-password" : "current-password"}
+          required
           className="w-full mb-3 px-3 py-2 border-2 border-gray-300 rounded text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Password"
           value={password}
