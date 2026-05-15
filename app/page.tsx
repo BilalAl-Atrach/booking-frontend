@@ -1,65 +1,109 @@
-import Image from "next/image";
+"use client";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import SignupLoginModal from "./components/SignupLoginModal";
 
-export default function Home() {
+function HomeContent() {
+  const [showModal, setShowModal] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const showLogin = searchParams.get("showLogin");
+    if (showLogin === "true") {
+      setShowModal(true);
+    }
+  }, [searchParams]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="animate-fadeInUp">
+            <h2 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+              Smart Booking Made{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-x">
+                Simple
+              </span>
+            </h2>
+            <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+              Experience effortless appointment scheduling with our AI-powered
+              booking system. Intuitive, fast, and reliable.
+            </p>
+          </div>
+
+          {/* Right Illustration */}
+          <div className="relative perspective">
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 rounded-3xl blur-3xl animate-pulse"></div>
+            <div className="relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-3xl p-8 border border-slate-700/50 shadow-2xl transform hover:rotate-y-6 hover:scale-105 transition-transform duration-700">
+              <div className="h-64 flex items-center justify-center text-4xl font-bold text-cyan-400">
+                🚀 Booking 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="max-w-7xl mx-auto px-6 py-20 border-t border-slate-700/50">
+        <h3 className="text-4xl font-bold mb-16 text-center animate-fadeIn">
+          Why Choose BookAI?
+        </h3>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: "⚡",
+              title: "Lightning Fast",
+              desc: "Book appointments in seconds with our optimized interface",
+            },
+            {
+              icon: "🤖",
+              title: "AI-Powered",
+              desc: "Smart scheduling suggestions based on your preferences",
+            },
+            {
+              icon: "🔒",
+              title: "Secure & Reliable",
+              desc: "Your data is protected with enterprise-grade security",
+            },
+          ].map((feature, i) => (
+            <div
+              key={i}
+              className="group p-8 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-slate-800 hover:shadow-2xl transform hover:-translate-y-2 hover:rotate-1"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className="text-4xl mb-4 group-hover:scale-125 transition-transform">
+                {feature.icon}
+              </div>
+              <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
+              <p className="text-slate-400">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-2xl p-12 text-center backdrop-blur-sm transform hover:scale-105 transition-transform duration-700 animate-fadeInUp">
+          <h3 className="text-3xl font-bold mb-4">
+            Ready to simplify your bookings?
+          </h3>
+          <p className="text-xl text-slate-300 mb-8">
+            Join thousands of satisfied users today
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
+
+      {/* Modal */}
+      {showModal && <SignupLoginModal onClose={() => setShowModal(false)} />}
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
   );
 }
