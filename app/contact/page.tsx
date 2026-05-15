@@ -20,19 +20,19 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="max-w-5xl mx-auto px-6 py-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
         {/* Header */}
-        <h2 className="text-5xl font-bold text-center mb-12 animate-fadeInUp">
+        <h2 className="text-3xl sm:text-5xl font-bold text-center mb-6 sm:mb-12 animate-fadeInUp">
           Get in <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Touch</span>
         </h2>
-        <p className="text-center text-slate-300 mb-16 max-w-2xl mx-auto">
+        <p className="text-center text-slate-300 mb-10 sm:mb-16 max-w-2xl mx-auto">
           Have questions, feedback, or need support? We’d love to hear from you. Fill out the form below and our team will get back to you.
         </p>
 
         {/* Contact Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-800/70 backdrop-blur-md rounded-2xl shadow-2xl p-10 border border-slate-700/50 transform hover:scale-[1.02] transition-transform duration-500"
+          className="bg-slate-800/70 backdrop-blur-md rounded-2xl shadow-2xl p-5 sm:p-10 border border-slate-700/50 transform hover:scale-[1.02] transition-transform duration-500"
         >
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <input
@@ -72,7 +72,7 @@ export default function ContactPage() {
         </form>
 
         {/* Contact Info */}
-        <div className="mt-16 text-center space-y-4">
+        <div className="mt-10 sm:mt-16 text-center space-y-4 text-sm sm:text-base">
           <p className="text-slate-400">📍 Beirut, Lebanon</p>
           <p className="text-slate-400">📞 +961 81020427</p>
           <p className="text-slate-400">✉️ support@bookai.com</p>

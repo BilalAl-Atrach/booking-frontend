@@ -128,16 +128,16 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white p-8">
+    <div className="min-h-screen bg-slate-900 text-white p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2">Admin Dashboard</h1>
           <p className="text-slate-400">Manage bookings, slots, and waitlist</p>
         </div>
 
         {/* Booked Slots Table */}
-        <div className="mb-8 bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <h2 className="text-2xl font-bold mb-4 text-green-400">
+        <div className="mb-6 sm:mb-8 bg-slate-800 rounded-lg p-4 sm:p-6 border border-slate-700">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-green-400">
             📅 Booked Slots ({booked.length})
           </h2>
           <div className="overflow-x-auto">
@@ -196,14 +196,14 @@ export default function AdminDashboard() {
         </div>
 
         {/* Available Slots Table */}
-        <div className="mb-8 bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-blue-400">
+        <div className="mb-6 sm:mb-8 bg-slate-800 rounded-lg p-4 sm:p-6 border border-slate-700">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-blue-400">
               ⏰ Available Slots ({available.length})
             </h2>
             <button
               onClick={() => setShowAddSlot(!showAddSlot)}
-              className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-semibold transition"
+              className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-semibold transition w-full sm:w-auto"
             >
               {showAddSlot ? "Cancel" : "+ Add Slot"}
             </button>
@@ -211,7 +211,7 @@ export default function AdminDashboard() {
 
           {showAddSlot && (
             <div className="bg-slate-700 p-4 rounded mb-4 border border-blue-500">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <input
                   type="date"
                   value={newSlot.date}
@@ -303,8 +303,8 @@ export default function AdminDashboard() {
         </div>
 
         {/* Waitlist Table */}
-        <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
-          <h2 className="text-2xl font-bold mb-4 text-yellow-400">
+        <div className="bg-slate-800 rounded-lg p-4 sm:p-6 border border-slate-700">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-yellow-400">
             ⏳ Waitlist ({waitlist.length})
           </h2>
           <div className="overflow-x-auto">

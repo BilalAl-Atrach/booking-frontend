@@ -86,15 +86,15 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-8">
-      <h1 className="text-2xl font-bold text-blue-600 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] bg-gray-50 p-4 sm:p-8">
+      <h1 className="text-xl sm:text-2xl font-bold text-blue-600 mb-4 text-center">
         AI Booking Assistant
       </h1>
-      <div className="w-full max-w-lg bg-white rounded shadow p-4 mb-4 h-96 overflow-y-auto">
+      <div className="w-full max-w-lg bg-white rounded shadow p-3 sm:p-4 mb-4 h-[60vh] sm:h-96 overflow-y-auto">
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`mb-2 p-3 rounded-lg ${
+            className={`mb-2 p-3 rounded-lg text-sm sm:text-base ${
               msg.role === "user"
                 ? "bg-blue-500 text-white text-right"
                 : "bg-gray-200 text-gray-900 text-left"
@@ -111,13 +111,13 @@ export default function ChatPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           disabled={!userId}
-          className="flex-grow border border-black rounded-l px-3 py-2 text-black placeholder-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="min-w-0 flex-grow border border-black rounded-l px-3 py-3 sm:py-2 text-black placeholder-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder={userId ? "Type your message..." : "Login required to chat"}
         />
         <button
           onClick={sendMessage}
           disabled={!userId}
-          className={`px-4 py-2 rounded-r font-semibold ${
+          className={`px-4 py-3 sm:py-2 rounded-r font-semibold shrink-0 ${
             userId
               ? "bg-blue-600 text-white hover:bg-blue-700"
               : "bg-gray-400 text-gray-700 cursor-not-allowed"

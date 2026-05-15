@@ -72,12 +72,10 @@ export default function SignupLoginModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center px-4 py-6">
       {/* ✅ Center modal independently of navbar */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 
-                      bg-white rounded-lg shadow-xl p-6 w-full max-w-md text-black 
-                      max-h-[90vh] overflow-auto"
+        className="w-full max-w-md bg-white rounded-lg shadow-xl p-5 sm:p-6 text-black max-h-[90vh] overflow-auto"
       >
         <h2 className="text-xl font-bold mb-4 text-center">
           {isSignup ? "Signup" : "Login"}

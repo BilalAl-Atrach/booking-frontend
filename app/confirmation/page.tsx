@@ -32,13 +32,13 @@ function ConfirmationContent() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 flex items-center justify-center p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Success Animation */}
-        <div className="flex justify-center mb-8">
-          <div className="relative w-24 h-24">
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="relative w-20 h-20 sm:w-24 sm:h-24">
             <div className="absolute inset-0 bg-green-200 rounded-full animate-ping opacity-75"></div>
-            <div className="relative w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
               <svg
                 className="w-12 h-12 text-white"
                 fill="none"
@@ -57,9 +57,9 @@ function ConfirmationContent() {
         </div>
 
         {/* Main Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
+        <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 mb-6">
           {/* Title */}
-          <h1 className="text-3xl font-bold text-center text-slate-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-2">
             Booking Confirmed!
           </h1>
           <p className="text-center text-emerald-600 font-semibold mb-8">
@@ -67,7 +67,7 @@ function ConfirmationContent() {
           </p>
 
           {/* Booking Details */}
-          <div className="space-y-4 bg-slate-50 rounded-xl p-6 mb-8">
+          <div className="space-y-4 bg-slate-50 rounded-xl p-4 sm:p-6 mb-8">
             {/* Slot ID */}
             <div className="flex items-center justify-between">
               <span className="text-slate-600 font-medium">Booking ID</span>
@@ -79,7 +79,7 @@ function ConfirmationContent() {
             {/* Date */}
             <div className="border-t border-slate-200 pt-4">
               <p className="text-slate-600 font-medium mb-2">Date</p>
-              <p className="text-slate-900 font-semibold text-lg">
+              <p className="text-slate-900 font-semibold text-base sm:text-lg">
                 {formattedDate}
               </p>
             </div>
@@ -87,7 +87,7 @@ function ConfirmationContent() {
             {/* Time */}
             <div className="border-t border-slate-200 pt-4">
               <p className="text-slate-600 font-medium mb-2">Time</p>
-              <p className="text-slate-900 font-semibold text-lg">
+              <p className="text-slate-900 font-semibold text-base sm:text-lg">
                 {formattedStart} - {formattedEnd}
               </p>
             </div>
