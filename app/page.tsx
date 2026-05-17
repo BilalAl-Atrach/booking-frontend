@@ -2,6 +2,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SignupLoginModal from "./components/SignupLoginModal";
+import Link from "next/link";
 
 /* ─── Interactive 3D booking card ────────────────────────────────────────── */
 function BookingCard3D() {
@@ -251,17 +252,35 @@ function HomeContent() {
                 className="group relative overflow-hidden rounded-xl px-7 py-3.5 font-bold text-white transition-all duration-300 hover:scale-[1.02]"
                 style={{ background: "linear-gradient(135deg,#06b6d4,#7c3aed)", boxShadow: "0 0 32px rgba(6,182,212,0.28), 0 0 60px rgba(124,58,237,0.14)" }}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Start free
-                  <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 8h10M9 4l4 4-4 4"/>
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
-              </button>
-              <button className="rounded-xl border border-white/[0.09] bg-white/[0.04] px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/[0.16] hover:bg-white/[0.07]">
-                Watch demo
-              </button>
+
+<Link
+  href="/login"
+  className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-500 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:scale-[1.02]"
+>
+  <span className="relative z-10 flex items-center gap-2">
+    Start free
+    <svg
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 8h10M9 4l4 4-4 4" />
+    </svg>
+  </span>
+
+  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
+</Link>
+
+<Link
+  href="/booking"
+  className="rounded-xl border border-white/[0.09] bg-white/[0.04] px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/[0.16] hover:bg-white/[0.07]"
+>
+  Book Now
+</Link>
             </div>
 
             {/* Stats */}
