@@ -230,12 +230,10 @@ function HomeContent() {
               <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-cyan-400">AI-Powered Scheduling</span>
             </div>
 
-           <h1 className="font-display text-[clamp(2.3rem,5vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em] text-white">
+  <h1 className="font-space text-[clamp(2.3rem,5vw,4.5rem)] font-bold leading-none tracking-tight text-white">
   Book
   <br />
-  <span
-    className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
-  >
+  <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
     Smarter.
   </span>
   <br />
