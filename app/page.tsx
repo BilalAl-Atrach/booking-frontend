@@ -230,17 +230,19 @@ function HomeContent() {
               <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-cyan-400">AI-Powered Scheduling</span>
             </div>
 
-            <h1 className="r2 font-display text-[clamp(3rem,8vw,5.5rem)] font-black leading-[0.92] tracking-tight text-white">
-              Book
-              <br />
-              <span style={{ background: "linear-gradient(90deg,#06b6d4 0%,#818cf8 55%,#c084fc 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Smarter.
-              </span>
-              <br />
-              Live
-              <br />
-              Better.
-            </h1>
+           <h1 className="font-display text-[clamp(2.3rem,5vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em] text-white">
+  Book
+  <br />
+  <span
+    className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
+  >
+    Smarter.
+  </span>
+  <br />
+  Live
+  <br />
+  Better.
+</h1>
 
             <p className="r3 mt-6 max-w-[26rem] text-base leading-relaxed text-slate-400 sm:text-lg">
               Let AI handle the complexity of scheduling. Instant suggestions, zero conflicts — every single time.
